@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+	<title>Movies</title>
+</head>
+<body>
+	<h2 th:inline="text"> Hello </h2>
+	
+	Time: <span th:inline="text"> [[${movie.date}]]</span><br />
+	Movie Title: <span th:inline="text"> [[${movie.title}]]</span><br />
+	Movie Rating: <span th:inline="text"> [[${movie.rating}]]</span><br />
+		
+</body>
+</html>
