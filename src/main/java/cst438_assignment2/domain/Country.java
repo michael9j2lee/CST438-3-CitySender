@@ -1,4 +1,4 @@
-package cst438_assignment3.domain;
+package cst438_assignment2.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,10 +13,7 @@ public class Country {
 	private String code;
 	private String name;
 	
-	public Country() {
-		this.code="";
-		this.name="";
-	} 
+	public Country() { } 
 	
 	public Country(String code, String name) {
 		this.code=code;
