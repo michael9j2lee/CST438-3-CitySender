@@ -1,6 +1,6 @@
-package cst438_assignment2.weather;
+package cst438_assignment3.weather;
 
-import cst438_assignment2.domain.CityWeather;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import cst438_assignment3.domain.TempAndTime;
 
 @Service
 public class WeatherService {
@@ -22,7 +24,7 @@ public class WeatherService {
 	
 	
 	// retrieve url and apikey for weather service from application.properties file
-	public WeatherService(
+	public WeatherService(    //1
 			@Value("${weather.url}") final String weatherUrl, 
 			@Value("${weather.apikey}") final String apiKey ) {
 		this.restTemplate = new RestTemplate();
@@ -30,17 +32,20 @@ public class WeatherService {
 		this.apiKey = apiKey; 
 	}
 	
-	
-	public  CityWeather getWeather(String cityName) {
-		ResponseEntity<JsonNode> response = restTemplate.getForEntity(
-				weatherUrl + "?q=" + cityName + "&appid=" + apiKey,
+	public  TempAndTime getTempAndTime(String cityName) {
+		ResponseEntity<JsonNode> response = 
+                 restTemplate.getForEntity(
+				weatherUrl + "?q=" + cityName + "&appid=" +
+                      apiKey,
 				JsonNode.class);
-		JsonNode json = response.getBody();
-		log.info("Status code from weather server:" + response.getStatusCodeValue());
+		JsonNode json = response.getBody();    // 2
+		log.info("Status code from weather server:" +
+                     response.getStatusCodeValue());
 		double temp = json.get("main").get("temp").asDouble();
-		String condition = json.get("weather").get(0).get("description").asText();
-	
-		return new CityWeather(temp, condition );
+		long time = json.get("dt").asLong();
+		int timezone = json.get("timezone").asInt();
+		return new TempAndTime(temp, time, timezone);
 	}
+
 
 }

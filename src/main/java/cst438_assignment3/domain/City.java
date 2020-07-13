@@ -1,88 +1,104 @@
-package cst438_assignment2.domain;
+package cst438_assignment3.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 
 @Entity
 @Table(name="city")
 public class City {
-	
 	@Id
 	private int ID;
 	private String name;
 	private String district;
 	private int population;
 	
-	// Transient marks extra field in an Entity class
-	//  that is not read/written to the database.
-	@Transient
-	CityWeather weather;
-	
 	@ManyToOne
 	@JoinColumn(name="countrycode", referencedColumnName="code")
 	private Country country;
 	
-	public City() { }
+	City (){ 
+		ID=0;
+		this.name="";
+		this.district="";
+		this.population=0;
+	}
 	
-	public City(int ID, String name, String district, int population, Country country) {
-		this.ID = ID;
+
+	
+	public City(int iD, String name, String district, int population, Country country) {
+		super();
+		ID = iD;
 		this.name = name;
 		this.district = district;
 		this.population = population;
 		this.country = country;
 	}
+	
+	
+	
 
 	public int getID() {
 		return ID;
 	}
 
+
+
 	public void setID(int iD) {
 		ID = iD;
 	}
+
+
 
 	public String getName() {
 		return name;
 	}
 
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
 
 	public String getDistrict() {
 		return district;
 	}
 
+
+
 	public void setDistrict(String district) {
 		this.district = district;
 	}
+
+
 
 	public int getPopulation() {
 		return population;
 	}
 
+
+
 	public void setPopulation(int population) {
 		this.population = population;
 	}
 
-	public CityWeather getWeather() {
-		return weather;
-	}
 
-	public void setWeather(CityWeather weather) {
-		this.weather = weather;
-	}
 
 	public Country getCountry() {
 		return country;
 	}
 
+
+
 	public void setCountry(Country country) {
 		this.country = country;
 	}
+
 
 
 	@Override
@@ -113,20 +129,6 @@ public class City {
 			return false;
 		if (population != other.population)
 			return false;
-		if (weather == null) {
-			if (other.weather != null)
-				return false;
-		} else if (!weather.equals(other.weather))
-			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "City [ID=" + ID + ", name=" + name + ", district=" + district + ", population=" + population
-				+ ", weather=" + weather + ", country=" + country + "]";
-	}
-	
-	
-
 }
