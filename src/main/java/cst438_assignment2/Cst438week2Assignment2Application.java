@@ -1,4 +1,4 @@
-package cst438_assignment3;
+package cst438_assignment2;
 
 import java.util.Random;
 

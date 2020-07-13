@@ -2,58 +2,14 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-	<title>City</title>
+	<title>Movies</title>
 </head>
 <body>
-	<h2 th:inline="text"> City </h2>
-	<table>
-		<tr>
-			<td>ID</td>
-			<td th:text="${cityInfo.id}"></td>
-		</tr>
-		<tr>
-			<td>Name</td>
-			<td th:text="${cityInfo.name}"></td>
-		</tr>
-		<tr>
-			<td>Country Code</td>
-			<td th:text="${cityInfo.countryCode}"></td>
-		</tr>
-		<tr>
-			<td>Country Name</td>
-			<td th:text="${cityInfo.countryName}"></td>
-		</tr>
-		<tr>
-			<td>District</td>
-			<td th:text="${cityInfo.district}"></td>
-		</tr>
-		<tr>
-			<td>Population</td>
-			<td th:text="${cityInfo.population}"></td>
-		</tr>
-		<tr>
-			<td>Local Weather</td>
-			<td th:text="${cityInfo.temp} + F"></td>
-		</tr>
-		<tr>
-			<td>Local Time</td>
-			<td th:text="${cityInfo.time}"></td>
-		</tr>
-	</table>
-	<br></br>
-	<form method="POST" th:action="@{/cities/reservation}">
-		<input type="hidden" id="city" name="city" th:value="${cityInfo.name}"/>
-		<label for="email">Email</label>
-		<input type="text" id="email" name="email"/><br>
-		<input type="radio" id ="luxury" name="level" value="luxury">
-		<label for="luxury">Luxury $1000</label><br>
-		<input type="radio" id ="veryGood" name="level" value="veryGood">
-		<label for="veryGood">Very Good $500</label><br>
-		<input type="radio" id ="good" name="level" value="good">
-		<label for="good">Good $350</label><br>
-		
-		<input type="submit">
-	</form>
+	<h2 th:inline="text"> Hello </h2>
 	
+	Time: <span th:inline="text"> [[${movie.date}]]</span><br />
+	Movie Title: <span th:inline="text"> [[${movie.title}]]</span><br />
+	Movie Rating: <span th:inline="text"> [[${movie.rating}]]</span><br />
+		
 </body>
 </html>
