@@ -85,7 +85,6 @@ public class CityServiceTest {
 		assertThat(expectedResult).isEqualTo( cityService.getCityInfo( "TestCity")) ;
 		
 		verify(cityService, times(1)).getCityInfo(ArgumentMatchers.any(String.class));
-		//verify(weatherService, times(1)).getTempAndTime(ArgumentMatchers.any(String.class));
 	}
 	
 	/*

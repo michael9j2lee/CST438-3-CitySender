@@ -24,7 +24,7 @@ public class WeatherService {
 	
 	
 	// retrieve url and apikey for weather service from application.properties file
-	public WeatherService(    //1
+	public WeatherService(    
 			@Value("${weather.url}") final String weatherUrl, 
 			@Value("${weather.apikey}") final String apiKey ) {
 		this.restTemplate = new RestTemplate();
@@ -38,7 +38,7 @@ public class WeatherService {
 				weatherUrl + "?q=" + cityName + "&appid=" +
                       apiKey,
 				JsonNode.class);
-		JsonNode json = response.getBody();    // 2
+		JsonNode json = response.getBody();    
 		log.info("Status code from weather server:" +
                      response.getStatusCodeValue());
 		double temp = json.get("main").get("temp").asDouble();
